@@ -4,27 +4,22 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imagetopdf/components/bar/detail_appbar_component.dart';
 import 'package:imagetopdf/config/theme/custom_theme.dart';
+import 'package:imagetopdf/providers/loading_provider/loading_provider.dart';
 import 'package:imagetopdf/widgets/scan/scan_detail_bottom_app_bar_widget.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
-class PdfDetailView extends ConsumerStatefulWidget {
+class PdfDetailView extends ConsumerWidget {
   final String pdfPath;
 
   const PdfDetailView({super.key, required this.pdfPath});
 
   @override
-  ConsumerState<PdfDetailView> createState() => _PdfDetailViewState();
-}
-
-class _PdfDetailViewState extends ConsumerState<PdfDetailView> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
-    print('PDF Detail View - Path: ${widget.pdfPath}'); // Konsola yazdırma
-
-    final file = File(widget.pdfPath);
+    final file = File(pdfPath);
+    final isLoading = ref.watch(pdfLoadingProvider);
 
     return Scaffold(
       appBar: PreferredSize(
@@ -44,7 +39,22 @@ class _PdfDetailViewState extends ConsumerState<PdfDetailView> {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               if (snapshot.hasData && snapshot.data == true) {
-                return SfPdfViewer.file(file);
+                return Stack(
+                  children: [
+                    SfPdfViewer.file(
+                      file,
+                      onDocumentLoaded: (details) {
+                        ref.read(pdfLoadingProvider.notifier).state = false;
+                      },
+                    ),
+                    if (isLoading)
+                      Center(
+                        child: CircularProgressIndicator(
+                          color: CustomTheme.primaryColor,
+                        ),
+                      ),
+                  ],
+                );
               } else {
                 return Center(
                   child: Text(
@@ -62,7 +72,7 @@ class _PdfDetailViewState extends ConsumerState<PdfDetailView> {
       bottomNavigationBar: ScanDetailBottomAppBarWidget(
         height: height,
         width: width,
-        pdfPath: widget.pdfPath,
+        pdfPath: pdfPath,
       ),
     );
   }

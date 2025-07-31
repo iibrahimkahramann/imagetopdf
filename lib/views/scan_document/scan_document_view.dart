@@ -6,16 +6,11 @@ import 'package:imagetopdf/components/scan/scan_pdf_component.dart';
 
 import 'package:imagetopdf/widgets/scan/bottom_app_bar_widget.dart';
 
-class ScanDocumentView extends ConsumerStatefulWidget {
+class ScanDocumentView extends ConsumerWidget {
   const ScanDocumentView({super.key});
 
   @override
-  ConsumerState<ScanDocumentView> createState() => _ScanDocumentViewState();
-}
-
-class _ScanDocumentViewState extends ConsumerState<ScanDocumentView> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     return Scaffold(

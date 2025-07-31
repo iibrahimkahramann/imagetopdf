@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,7 +10,7 @@ final pdfListProvider = StateNotifierProvider<PdfNotifier, List<String>>((ref) {
 class PdfNotifier extends StateNotifier<List<String>> {
   PdfNotifier() : super([]);
 
-  static const String _pdfListKey = 'pdf_file_names'; // Anahtar adını değiştirdim
+  static const String _pdfListKey = 'pdf_file_names';
 
   Future<void> loadPdfs() async {
     final prefs = await SharedPreferences.getInstance();
@@ -22,7 +21,7 @@ class PdfNotifier extends StateNotifier<List<String>> {
   }
 
   Future<void> addPdf(String absolutePath) async {
-    final fileName = absolutePath.split('/').last; // Sadece dosya adını al
+    final fileName = absolutePath.split('/').last;
     state = [...state, fileName];
     await _savePdfs();
   }

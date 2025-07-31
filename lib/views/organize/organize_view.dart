@@ -13,7 +13,7 @@ class OrganizeView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    final pdfs = ref.watch(pdfListProvider.select((value) => value)); // Sadece state'i izle
+    ref.watch(pdfListProvider.select((value) => value));
 
     return Scaffold(
       appBar: CustomAppBar(),
