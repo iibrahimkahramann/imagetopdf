@@ -47,9 +47,9 @@ class _BottomAppBarWidgetState extends ConsumerState<BottomAppBarWidget> {
         : _documentNameController.text;
     final outputFile = File('${appDocDir.path}/$fileName.pdf');
     await outputFile.writeAsBytes(await pdf.save());
-    print('PDF saved to: ${outputFile.path}'); // Konsola yazdırma
+    print('PDF saved to: ${outputFile.path}');
 
-    ref.read(pdfListProvider.notifier).addPdf(outputFile.path); // Sadece dosya adını gönder
+    ref.read(pdfListProvider.notifier).addPdf(outputFile.path);
     ref.read(imageProvider.notifier).clearImages();
 
     if (mounted) {
@@ -83,6 +83,14 @@ class _BottomAppBarWidgetState extends ConsumerState<BottomAppBarWidget> {
               height: widget.height,
               onTap: () async {
                 if (images.isNotEmpty) {
+                  if (_documentNameController.text.trim().isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Please enter a document name.'),
+                      ),
+                    );
+                    return;
+                  }
                   await _createAndSavePdf(images);
                 }
               },
@@ -95,4 +103,3 @@ class _BottomAppBarWidgetState extends ConsumerState<BottomAppBarWidget> {
     );
   }
 }
-

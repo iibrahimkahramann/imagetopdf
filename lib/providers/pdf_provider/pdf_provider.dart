@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
@@ -38,6 +39,23 @@ class PdfNotifier extends StateNotifier<List<String>> {
 
   Future<List<String>> getAbsolutePdfPaths() async {
     final appDocDir = await getApplicationDocumentsDirectory();
-    return state.map((fileName) => '${appDocDir.path}/$fileName').toList();
+    final List<String> absolutePaths = state.map((fileName) => '${appDocDir.path}/$fileName').toList();
+
+    // Dosyaları son değiştirilme tarihine göre sırala (en yeni en üstte)
+    absolutePaths.sort((a, b) {
+      final fileA = File(a);
+      final fileB = File(b);
+      if (fileA.existsSync() && fileB.existsSync()) {
+        return fileB.lastModifiedSync().compareTo(fileA.lastModifiedSync());
+      } else if (fileA.existsSync()) {
+        return -1; // A var, B yoksa A daha yeni kabul et
+      } else if (fileB.existsSync()) {
+        return 1; // B var, A yoksa B daha yeni kabul et
+      } else {
+        return 0; // İkisi de yoksa sıralama değişmez
+      }
+    });
+
+    return absolutePaths;
   }
 }

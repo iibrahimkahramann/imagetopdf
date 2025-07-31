@@ -15,6 +15,7 @@ class DocAddButtonWdget extends ConsumerWidget {
     return FloatingActionButton(
       onPressed: () async {
         await ref.read(imageProvider.notifier).pickImages();
+
         if (ref.read(imageProvider).isNotEmpty) {
           context.go('/doc-scan');
         }
