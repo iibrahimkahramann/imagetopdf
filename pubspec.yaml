@@ -38,11 +38,13 @@ dependencies:
   flutter_riverpod: ^2.6.1
   shared_preferences: ^2.5.3
   easy_localization: ^3.0.8
-  image_picker: ^1.1.2
   pdf: ^3.11.3
   printing: ^5.14.2
   path_provider: ^2.1.5
   share_plus: ^11.0.0
+  multi_image_picker_view: ^3.0.0
+  image_picker: ^1.1.2
+  syncfusion_flutter_pdfviewer: ^30.1.42
 
 dev_dependencies:
   flutter_test:

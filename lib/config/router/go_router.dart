@@ -4,6 +4,7 @@ import 'package:imagetopdf/views/organize/organize_view.dart';
 import 'package:imagetopdf/views/scan_document/scan_document_view.dart';
 import 'package:imagetopdf/views/setting/settings_view.dart';
 import 'package:imagetopdf/views/splash/splash_view.dart';
+import 'package:imagetopdf/views/pdf_detail/pdf_detail_view.dart'; // Yeni import
 
 export 'package:go_router/go_router.dart' show GoRouter;
 export 'package:flutter/material.dart' show GlobalKey, NavigatorState;
@@ -51,6 +52,13 @@ final router = GoRouter(
       path: '/settings',
       pageBuilder: (context, state) =>
           fadeScalePage(child: SettingsView(), state: state),
+    ),
+    GoRoute(
+      path: '/pdf-detail',
+      pageBuilder: (context, state) => fadeScalePage(
+        child: PdfDetailView(pdfPath: state.extra as String),
+        state: state,
+      ),
     ),
   ],
 );
