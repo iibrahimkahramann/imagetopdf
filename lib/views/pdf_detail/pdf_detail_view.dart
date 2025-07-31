@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imagetopdf/components/bar/detail_appbar_component.dart';
+import 'package:imagetopdf/config/theme/custom_theme.dart';
 import 'package:imagetopdf/widgets/scan/scan_detail_bottom_app_bar_widget.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
@@ -21,6 +22,10 @@ class _PdfDetailViewState extends ConsumerState<PdfDetailView> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
+    print('PDF Detail View - Path: ${widget.pdfPath}'); // Konsola yazdırma
+
+    final file = File(widget.pdfPath);
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
@@ -34,7 +39,25 @@ class _PdfDetailViewState extends ConsumerState<PdfDetailView> {
           horizontal: width * 0.04,
           vertical: height * 0.02,
         ),
-        child: SfPdfViewer.file(File(widget.pdfPath)),
+        child: FutureBuilder<bool>(
+          future: file.exists(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasData && snapshot.data == true) {
+                return SfPdfViewer.file(file);
+              } else {
+                return Center(
+                  child: Text(
+                    'PDF file not found or corrupted.',
+                    style: CustomTheme.textTheme(context).bodyMedium,
+                  ),
+                );
+              }
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
+          },
+        ),
       ),
       bottomNavigationBar: ScanDetailBottomAppBarWidget(
         height: height,

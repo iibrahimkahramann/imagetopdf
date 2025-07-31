@@ -13,17 +13,28 @@ class OrganizeView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    final pdfs = ref.watch(pdfListProvider);
+    final pdfs = ref.watch(pdfListProvider.select((value) => value)); // Sadece state'i izle
 
     return Scaffold(
       appBar: CustomAppBar(),
-      body: pdfs.isEmpty
-          ? EmptyDocWidget(width: width, height: height)
-          : PdfListComponent(
+      body: FutureBuilder<List<String>>(
+        future: ref.read(pdfListProvider.notifier).getAbsolutePdfPaths(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (snapshot.data!.isEmpty) {
+            return EmptyDocWidget(width: width, height: height);
+          } else {
+            return PdfListComponent(
               width: width,
               height: height,
-              pdfs: pdfs,
-            ),
+              pdfs: snapshot.data!,
+            );
+          }
+        },
+      ),
       floatingActionButton: DocAddButtonWdget(width: width),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
