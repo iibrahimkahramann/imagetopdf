@@ -25,7 +25,9 @@ class ScanDetailBottomAppBarWidget extends StatelessWidget {
           width: width,
           height: height,
           onTap: () async {
-            await Share.shareXFiles([XFile(pdfPath)], text: 'Here is your PDF document!');
+            await Share.shareXFiles([
+              XFile(pdfPath),
+            ], text: 'Here is your PDF document!');
           },
           text: 'Share',
           icon: 'assets/icons/share.png',

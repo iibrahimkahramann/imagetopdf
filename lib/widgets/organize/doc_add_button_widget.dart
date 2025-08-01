@@ -17,6 +17,7 @@ class DocAddButtonWdget extends ConsumerWidget {
         await ref.read(imageProvider.notifier).pickImages();
 
         if (ref.read(imageProvider).isNotEmpty) {
+          // ignore: use_build_context_synchronously
           context.go('/doc-scan');
         }
       },

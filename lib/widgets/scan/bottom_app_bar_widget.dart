@@ -47,7 +47,6 @@ class _BottomAppBarWidgetState extends ConsumerState<BottomAppBarWidget> {
         : _documentNameController.text;
     final outputFile = File('${appDocDir.path}/$fileName.pdf');
     await outputFile.writeAsBytes(await pdf.save());
-    print('PDF saved to: ${outputFile.path}');
 
     ref.read(pdfListProvider.notifier).addPdf(outputFile.path);
     ref.read(imageProvider.notifier).clearImages();
