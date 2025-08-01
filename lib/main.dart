@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:imagetopdf/config/functions/app_tracking.dart';
 import 'package:imagetopdf/config/router/go_router.dart' as app_router;
 import 'package:imagetopdf/config/theme/custom_theme.dart';
 import 'package:imagetopdf/providers/pdf_provider/pdf_provider.dart';
@@ -76,6 +77,7 @@ class MyAppState extends ConsumerState<MyApp> {
   void initState() {
     setupRevenueCatListener(ref);
     super.initState();
+    Platform.isIOS ? appTracking() : nottrack();
   }
 
   @override

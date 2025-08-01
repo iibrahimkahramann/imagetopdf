@@ -24,10 +24,7 @@ class SplashView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Welcome to ImageToPDF',
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
+            Image.asset('assets/images/app_icon.png', width: 200, height: 200),
           ],
         ),
       ),
