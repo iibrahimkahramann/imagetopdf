@@ -43,6 +43,7 @@ final router = GoRouter(
       pageBuilder: (context, state) =>
           fadeScalePage(child: OrganizeView(), state: state),
     ),
+
     GoRoute(
       path: '/doc-scan',
       pageBuilder: (context, state) =>

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:imagetopdf/config/theme/custom_theme.dart';
@@ -27,7 +28,7 @@ class ScanPdfComponent extends ConsumerWidget {
         ),
         child: Center(
           child: Text(
-            'No images selected',
+            'No images selected'.tr(),
             style: CustomTheme.textTheme(context).bodyMedium,
           ),
         ),

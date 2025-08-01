@@ -11,6 +11,20 @@ PODS:
     - Flutter
   - printing (1.0.0):
     - Flutter
+  - purchases_flutter (9.1.0):
+    - Flutter
+    - PurchasesHybridCommon (= 16.0.2)
+  - purchases_ui_flutter (9.1.0):
+    - Flutter
+    - PurchasesHybridCommonUI (= 16.0.2)
+  - PurchasesHybridCommon (16.0.2):
+    - RevenueCat (= 5.33.1)
+  - PurchasesHybridCommonUI (16.0.2):
+    - PurchasesHybridCommon (= 16.0.2)
+    - RevenueCatUI (= 5.33.1)
+  - RevenueCat (5.33.1)
+  - RevenueCatUI (5.33.1):
+    - RevenueCat (= 5.33.1)
   - share_plus (0.0.1):
     - Flutter
   - shared_preferences_foundation (0.0.1):
@@ -28,10 +42,19 @@ DEPENDENCIES:
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - pdf_render (from `.symlinks/plugins/pdf_render/ios`)
   - printing (from `.symlinks/plugins/printing/ios`)
+  - purchases_flutter (from `.symlinks/plugins/purchases_flutter/ios`)
+  - purchases_ui_flutter (from `.symlinks/plugins/purchases_ui_flutter/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - syncfusion_flutter_pdfviewer (from `.symlinks/plugins/syncfusion_flutter_pdfviewer/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
+
+SPEC REPOS:
+  trunk:
+    - PurchasesHybridCommon
+    - PurchasesHybridCommonUI
+    - RevenueCat
+    - RevenueCatUI
 
 EXTERNAL SOURCES:
   device_info_plus:
@@ -46,6 +69,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/pdf_render/ios"
   printing:
     :path: ".symlinks/plugins/printing/ios"
+  purchases_flutter:
+    :path: ".symlinks/plugins/purchases_flutter/ios"
+  purchases_ui_flutter:
+    :path: ".symlinks/plugins/purchases_ui_flutter/ios"
   share_plus:
     :path: ".symlinks/plugins/share_plus/ios"
   shared_preferences_foundation:
@@ -62,11 +89,17 @@ SPEC CHECKSUMS:
   path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
   pdf_render: 5f9586e5fd49519bf59ea14a6da4851616e91c81
   printing: 54ff03f28fe9ba3aa93358afb80a8595a071dd07
+  purchases_flutter: 818eabac676b9037ac7692d4bc48a52a10b276be
+  purchases_ui_flutter: bf93f63c042fdcd043c2f3254d340aa2383df10e
+  PurchasesHybridCommon: ae7a0a6e105ecdde3e8816a004e57f0a2a7b9261
+  PurchasesHybridCommonUI: f94430070f5ec1cc9513666402871dc70f42ec36
+  RevenueCat: b0ed01125b05a45b8264a2951ad68acb61942038
+  RevenueCatUI: e6fad6a8bec67d910da78cd171328f1104afea77
   share_plus: 50da8cb520a8f0f65671c6c6a99b3617ed10a58a
   shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
   syncfusion_flutter_pdfviewer: 90dc48305d2e33d4aa20681d1e98ddeda891bc14
   url_launcher_ios: 694010445543906933d732453a59da0a173ae33d
 
-PODFILE CHECKSUM: 4305caec6b40dde0ae97be1573c53de1882a07e5
+PODFILE CHECKSUM: fa1c758b2b6838d3b196938c25c2f243c02da750
 
 COCOAPODS: 1.16.2

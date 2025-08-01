@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "140234238056",
+    "project_id": "imagetopdf-09839",
+    "storage_bucket": "imagetopdf-09839.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140234238056:android:66bc1c01f9bfb830e4f3dd",
+        "android_client_info": {
+          "package_name": "com.example.imagetopdf"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClYwwDsf1BItEIFC9eGaADcSRIefzBAfo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

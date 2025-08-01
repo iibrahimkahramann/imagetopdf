@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:imagetopdf/components/scan/scan_default_button_component.dart';
 import 'package:imagetopdf/config/theme/custom_theme.dart';
@@ -27,9 +28,9 @@ class ScanDetailBottomAppBarWidget extends StatelessWidget {
           onTap: () async {
             await Share.shareXFiles([
               XFile(pdfPath),
-            ], text: 'Here is your PDF document!');
+            ], text: 'Here is your PDF document!'.tr());
           },
-          text: 'Share',
+          text: 'Share'.tr(),
           icon: 'assets/icons/share.png',
         ),
       ),

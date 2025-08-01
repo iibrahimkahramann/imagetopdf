@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imagetopdf/config/theme/custom_theme.dart';
@@ -165,8 +166,8 @@ class PdfListComponent extends StatelessWidget {
                               final pageCount = snapshot.data!['pageCount'];
                               return Text(
                                 pageCount > 1
-                                    ? '$pageCount Pages'
-                                    : '$pageCount Page',
+                                    ? tr('Pages', args: ['$pageCount'])
+                                    : tr('Page', args: ['$pageCount']),
                                 style: CustomTheme.textTheme(context).bodySmall,
                               );
                             } else {

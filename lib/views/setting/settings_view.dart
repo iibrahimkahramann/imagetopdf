@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class SettingsView extends ConsumerWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
         child: DetailAppBarComponent(
-          title: 'Settings',
+          title: 'Settings'.tr(),
           back: () => context.go('/organize'),
         ),
       ),
@@ -36,16 +37,16 @@ class SettingsView extends ConsumerWidget {
             SettingsTitleComponent(
               width: width,
               height: height,
-              title: 'About',
+              title: 'About'.tr(),
               icon: CupertinoIcons.info_circle,
             ),
             SizedBox(height: height * 0.015),
             SettingsDefaultContainerComponent(
               width: width,
               height: height,
-              title: 'Privacy Policy',
+              title: 'Privacy Policy'.tr(),
               icon: CupertinoIcons.shield_lefthalf_fill,
-              subtitle: 'We value your privacy. Read our policy',
+              subtitle: 'We value your privacy. Read our policy'.tr(),
               onTap: () {
                 launchAppStore(
                   'https://sites.google.com/view/image-to-pdf-privacy-policy-ii/ana-sayfa',
@@ -56,9 +57,9 @@ class SettingsView extends ConsumerWidget {
             SettingsDefaultContainerComponent(
               width: width,
               height: height,
-              title: 'Terms of Use',
+              title: 'Terms of Use'.tr(),
               icon: CupertinoIcons.doc_text,
-              subtitle: 'Understand our terms of use',
+              subtitle: 'Understand our terms of use'.tr(),
               onTap: () {
                 launchAppStore(
                   'https://sites.google.com/view/image-to-pdf-terms-of-use-ii/ana-sayfa',
@@ -69,16 +70,16 @@ class SettingsView extends ConsumerWidget {
             SettingsTitleComponent(
               width: width,
               height: height,
-              title: 'Apps Settings',
+              title: 'Apps Settings'.tr(),
               icon: CupertinoIcons.settings,
             ),
             SizedBox(height: height * 0.015),
             SettingsDefaultContainerComponent(
               width: width,
               height: height,
-              title: 'Rate Us',
+              title: 'Rate Us'.tr(),
               icon: CupertinoIcons.star,
-              subtitle: 'Enjoying the app? Rate us',
+              subtitle: 'Enjoying the app? Rate us'.tr(),
               onTap: () {
                 launchAppStore(
                   'https://apps.apple.com/app/6744528945?action=write-review',

@@ -7,10 +7,14 @@ class DetailAppBarComponent extends StatelessWidget {
     super.key,
     required this.title,
     required this.back,
+    this.icon,
+    this.onIconPressed,
   });
 
   final String title;
   final VoidCallback back;
+  final IconData? icon;
+  final VoidCallback? onIconPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +30,17 @@ class DetailAppBarComponent extends StatelessWidget {
         onPressed: () => back(),
       ),
       title: Text(title, style: CustomTheme.textTheme(context).bodyLarge),
+      actions: [
+        if (icon != null && onIconPressed != null)
+          IconButton(
+            icon: Icon(
+              icon,
+              color: CustomTheme.primaryColor,
+              size: height * 0.03,
+            ),
+            onPressed: onIconPressed,
+          ),
+      ],
     );
   }
 }

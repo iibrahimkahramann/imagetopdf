@@ -1,11 +1,14 @@
 import 'dart:io';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:imagetopdf/components/scan/default_text_field_component.dart';
 import 'package:imagetopdf/components/scan/scan_default_button_component.dart';
+import 'package:imagetopdf/config/functions/rc_paywall.dart';
 import 'package:imagetopdf/config/theme/custom_theme.dart';
 import 'package:imagetopdf/providers/image_provider/image_provider.dart';
 import 'package:imagetopdf/providers/pdf_provider/pdf_provider.dart';
+import 'package:imagetopdf/providers/premium/premium_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:path_provider/path_provider.dart';
 import 'package:go_router/go_router.dart';
@@ -65,6 +68,7 @@ class _BottomAppBarWidgetState extends ConsumerState<BottomAppBarWidget> {
   @override
   Widget build(BuildContext context) {
     final images = ref.watch(imageProvider);
+    final isPremium = ref.watch(isPremiumProvider);
 
     return BottomAppBar(
       height: widget.height * 0.185,
@@ -81,11 +85,14 @@ class _BottomAppBarWidgetState extends ConsumerState<BottomAppBarWidget> {
               width: widget.width,
               height: widget.height,
               onTap: () async {
+                if (!isPremium) {
+                  await RevenueCatService.showPaywall();
+                }
                 if (images.isNotEmpty) {
                   if (_documentNameController.text.trim().isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Please enter a document name.'),
+                      SnackBar(
+                        content: Text('Please enter a document name.'.tr()),
                       ),
                     );
                     return;
@@ -93,7 +100,7 @@ class _BottomAppBarWidgetState extends ConsumerState<BottomAppBarWidget> {
                   await _createAndSavePdf(images);
                 }
               },
-              text: 'Save',
+              text: 'Save'.tr(),
               icon: 'assets/icons/save.png',
             ),
           ),

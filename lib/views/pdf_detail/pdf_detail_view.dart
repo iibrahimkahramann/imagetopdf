@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -25,8 +27,10 @@ class PdfDetailView extends ConsumerWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
         child: DetailAppBarComponent(
-          title: 'PDF Viewer',
+          title: 'PDF Viewer'.tr(),
           back: () => context.go('/organize'),
+          icon: CupertinoIcons.delete,
+          onIconPressed: () {},
         ),
       ),
       body: Padding(
@@ -58,7 +62,7 @@ class PdfDetailView extends ConsumerWidget {
               } else {
                 return Center(
                   child: Text(
-                    'PDF file not found or corrupted.',
+                    'PDF file not found or corrupted.'.tr(),
                     style: CustomTheme.textTheme(context).bodyMedium,
                   ),
                 );
